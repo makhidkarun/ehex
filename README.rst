@@ -12,7 +12,7 @@ P-Z (numerical values 23-33)
 Requirements
 ------------
 
-* Python2.6, 2.7, 3.5, 3.6
+* Python 2.6, 2.7, 3.5, 3.6
 
 Status
 ------

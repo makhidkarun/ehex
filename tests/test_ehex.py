@@ -10,18 +10,22 @@ sys.path.insert(
 
 from ehex.ehex import ehex
 
+VERSION_INFO = '{0}.{1}'.format(
+    sys.version_info[0],
+    sys.version_info[1])
+
 
 class TestEHexBasic(unittest.TestCase):
     '''eHex basic unit tests'''
     def test_assign_invalid(self):
         '''Test invalid assignments'''
-        with self.assertRaises(ValueError):
-            value = ehex(-1)
-            value = ehex(23)
-            value = ehex('I')
-            value = ehex('O')
-            value = ehex('AA')
-            del value   # Bow before the linter
+        if VERSION_INFO >= '2.7':
+            for test_value in [-1, 43, 'I', 'O', 'AA']:
+                with self.assertRaises(ValueError):
+                    ehex(test_value)
+        else:
+            for test_value in [-1, 43, 'I', 'O', 'AA']:
+                self.assertRaises(ValueError, ehex, test_value)
 
     def test_assign_valid_int(self):
         '''Test valid int assignment'''
@@ -30,7 +34,7 @@ class TestEHexBasic(unittest.TestCase):
             hexit = ehex(digit)
             self.assertTrue(str(hexit) == hexits[digit])
 
-    def test_assign_vald_str(self):
+    def test_assign_valid_str(self):
         '''Test valid str assignment'''
         hexits = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ'
         for hexit in hexits:
@@ -97,17 +101,27 @@ class TestEHexAddition(unittest.TestCase):
 
     def test_addition_result_type(self):
         '''Test addition returns ehex'''
-        self.assertIsInstance(ehex(3) + 3, ehex)
-        self.assertIsInstance(ehex(3) + '3', ehex)
-        self.assertIsInstance(ehex(3) + ehex(3), ehex)
+        if VERSION_INFO >= '2.7':
+            self.assertIsInstance(ehex(3) + 3, ehex)
+            self.assertIsInstance(ehex(3) + '3', ehex)
+            self.assertIsInstance(ehex(3) + ehex(3), ehex)
+        else:
+            self.assertTrue(isinstance(ehex(3) + 3, ehex))
+            self.assertTrue(isinstance(ehex(3) + '3', ehex))
+            self.assertTrue(isinstance(ehex(3) + 3, ehex))
 
     def test_invalid_addition(self):
         '''Test out of bounds addition raises ValueError'''
-        with self.assertRaises(ValueError):
-            dummy = ehex(3) + 99
-            dummy = ehex('Y') + 99
-            dummy = ehex('Y') + ehex('Y')
-            del dummy
+        if VERSION_INFO >= '2.7':
+            with self.assertRaises(ValueError):
+                dummy = ehex(3) + 99
+                dummy = ehex('Y') + 99
+                dummy = ehex('Y') + ehex('Y')
+                del dummy
+        else:
+            self.assertRaises(ValueError, lambda: ehex(3) + 99)
+            self.assertRaises(ValueError, lambda: ehex('Y') + 99)
+            self.assertRaises(ValueError, lambda: ehex('Y') + ehex('Y'))
 
 
 class TestEHexSubtraction(unittest.TestCase):
@@ -120,17 +134,27 @@ class TestEHexSubtraction(unittest.TestCase):
 
     def test_subtraction_result_type(self):
         '''Test subtraction returns ehex'''
-        self.assertIsInstance(ehex(8) - 3, ehex)
-        self.assertIsInstance(ehex(8) - '3', ehex)
-        self.assertIsInstance(ehex(8) - ehex(3), ehex)
+        if VERSION_INFO >= '2.7':
+            self.assertIsInstance(ehex(8) - 3, ehex)
+            self.assertIsInstance(ehex(8) - '3', ehex)
+            self.assertIsInstance(ehex(8) - ehex(3), ehex)
+        else:
+            self.assertTrue(isinstance(ehex(8) - 3, ehex))
+            self.assertTrue(isinstance(ehex(8) - '3', ehex))
+            self.assertTrue(isinstance(ehex(8) - ehex(3), ehex))
 
     def test_invalid_subtraction(self):
         '''Test out of bounds subtraction raises ValueError'''
-        with self.assertRaises(ValueError):
-            dummy = ehex(3) - 99
-            dummy = ehex('A') - 99
-            dummy = ehex(1) - ehex('Y')
-            del dummy
+        if VERSION_INFO >= '2.7':
+            with self.assertRaises(ValueError):
+                dummy = ehex(3) - 99
+                dummy = ehex('A') - 99
+                dummy = ehex(1) - ehex('Y')
+                del dummy
+        else:
+            self.assertRaises(ValueError, lambda: ehex(3) - 99)
+            self.assertRaises(ValueError, lambda: ehex('A') - 99)
+            self.assertRaises(ValueError, lambda: ehex(1) - ehex('Y'))
 
 
 class TestEHexRsubtraction(unittest.TestCase):
@@ -142,12 +166,20 @@ class TestEHexRsubtraction(unittest.TestCase):
 
     def test_rsubtraction_result_type(self):
         '''Test rsubtraction returns ehex'''
-        self.assertIsInstance(11 - ehex(8), ehex)
-        self.assertIsInstance('B' - ehex(8), ehex)
+        if VERSION_INFO >= '2.7':
+            self.assertIsInstance(11 - ehex(8), ehex)
+            self.assertIsInstance('B' - ehex(8), ehex)
+        else:
+            self.assertTrue(isinstance(11 - ehex(8), ehex))
+            self.assertTrue(isinstance('B' - ehex(8), ehex))
 
     def test_invalid_rsubtraction(self):
         '''Test out of bounds rsubtraction raises ValueError'''
-        with self.assertRaises(ValueError):
-            dummy = 1 - ehex(8)
-            dummy = 1 - ehex('A')
-            del dummy
+        if VERSION_INFO >= '2.7':
+            with self.assertRaises(ValueError):
+                dummy = 1 - ehex(8)
+                dummy = 1 - ehex('A')
+                del dummy
+        else:
+            self.assertRaises(ValueError, lambda: 1 - ehex(8))
+            self.assertRaises(ValueError, lambda: 1 - ehex('A'))

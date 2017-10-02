@@ -112,16 +112,9 @@ class TestEHexAddition(unittest.TestCase):
 
     def test_invalid_addition(self):
         '''Test out of bounds addition raises ValueError'''
-        if VERSION_INFO >= '2.7':
-            with self.assertRaises(ValueError):
-                dummy = ehex(3) + 99
-                dummy = ehex('Y') + 99
-                dummy = ehex('Y') + ehex('Y')
-                del dummy
-        else:
-            self.assertRaises(ValueError, lambda: ehex(3) + 99)
-            self.assertRaises(ValueError, lambda: ehex('Y') + 99)
-            self.assertRaises(ValueError, lambda: ehex('Y') + ehex('Y'))
+        self.assertRaises(ValueError, lambda: ehex(3) + 99)
+        self.assertRaises(ValueError, lambda: ehex('Y') + 99)
+        self.assertRaises(ValueError, lambda: ehex('Y') + ehex('Y'))
 
 
 class TestEHexSubtraction(unittest.TestCase):
@@ -145,16 +138,9 @@ class TestEHexSubtraction(unittest.TestCase):
 
     def test_invalid_subtraction(self):
         '''Test out of bounds subtraction raises ValueError'''
-        if VERSION_INFO >= '2.7':
-            with self.assertRaises(ValueError):
-                dummy = ehex(3) - 99
-                dummy = ehex('A') - 99
-                dummy = ehex(1) - ehex('Y')
-                del dummy
-        else:
-            self.assertRaises(ValueError, lambda: ehex(3) - 99)
-            self.assertRaises(ValueError, lambda: ehex('A') - 99)
-            self.assertRaises(ValueError, lambda: ehex(1) - ehex('Y'))
+        self.assertRaises(ValueError, lambda: ehex(3) - 99)
+        self.assertRaises(ValueError, lambda: ehex('A') - 99)
+        self.assertRaises(ValueError, lambda: ehex(1) - ehex('Y'))
 
 
 class TestEHexRsubtraction(unittest.TestCase):
@@ -175,11 +161,5 @@ class TestEHexRsubtraction(unittest.TestCase):
 
     def test_invalid_rsubtraction(self):
         '''Test out of bounds rsubtraction raises ValueError'''
-        if VERSION_INFO >= '2.7':
-            with self.assertRaises(ValueError):
-                dummy = 1 - ehex(8)
-                dummy = 1 - ehex('A')
-                del dummy
-        else:
-            self.assertRaises(ValueError, lambda: 1 - ehex(8))
-            self.assertRaises(ValueError, lambda: 1 - ehex('A'))
+        self.assertRaises(ValueError, lambda: 1 - ehex(8))
+        self.assertRaises(ValueError, lambda: 1 - ehex('A'))

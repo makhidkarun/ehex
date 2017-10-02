@@ -12,10 +12,17 @@ P-Z (numerical values 23-33)
 Requirements
 ------------
 
-* Python 2.7, 3.5
+* Python2.6, 2.7, 3.5, 3.6
 
 Status
 ------
+
+.. image:: https://travis-ci.org/makhidkarun/ehex.svg?branch=master
+    :target: https://travis-ci.org/makhidkarun/ehex
+
+The project code is hosted on GitHub_ as part of the Makhidkarun collection. 
+
+.. _GitHub: https://github.com/makhidkarun/ehex
 
 
 Usage

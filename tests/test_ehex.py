@@ -8,7 +8,7 @@ sys.path.insert(
     0,
     os.path.dirname(os.path.abspath(__file__)) + '/../')
 
-from ehex.ehex import ehex
+from ehex import ehex
 
 VERSION_INFO = '{0}.{1}'.format(
     sys.version_info[0],

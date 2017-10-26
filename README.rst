@@ -35,7 +35,9 @@ ehex() supports the following operations:
 * Addition
 * Subtraction
 
->>> from ehex.ehex import ehex
+Addition/subtraction will throw a ValueError if the result is outside the range 0-33
+
+>>> from ehex import ehex
 >>> x = ehex()      # Creates ehex variable, value 0/'0'
 >>> x = ehex(1)     # Creates ehex variable, value 1/'1'
 >>> x = ehex('D')   # Creates ehex variable, value 13/'D'

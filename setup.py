@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='ehex',
-      version='0.2.0',
+      version='1.0.0',
       description='eHex module (from Traveller/Cepheus System)',
       url='https://github.com/makhidkarun/ehex',
       author='Arthur Green',

@@ -56,7 +56,7 @@ class ehex(object):
             return self._value == int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __ne__(self, other):
         if isinstance(other, str):
@@ -67,7 +67,7 @@ class ehex(object):
             return self._value != int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __lt__(self, other):
         if isinstance(other, str):
@@ -78,7 +78,7 @@ class ehex(object):
             return self._value < int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __gt__(self, other):
         if isinstance(other, str):
@@ -89,7 +89,7 @@ class ehex(object):
             return self._value > int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __le__(self, other):
         if isinstance(other, str):
@@ -100,7 +100,7 @@ class ehex(object):
             return self._value <= int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __ge__(self, other):
         if isinstance(other, str):
@@ -111,7 +111,7 @@ class ehex(object):
             return self._value >= int(other)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __add__(self, other):
         if isinstance(other, str):
@@ -123,7 +123,7 @@ class ehex(object):
             return ehex(self._value + int(other))
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __sub__(self, other):
         if isinstance(other, str):
@@ -135,7 +135,7 @@ class ehex(object):
             return ehex(self._value - int(other))
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))
 
     def __rsub__(self, other):
         if isinstance(other, str):
@@ -145,4 +145,4 @@ class ehex(object):
             return ehex(other - self._value)
         else:
             raise TypeError(
-                '%s %s should be ehex, int or str', type(other), other)
+                '%s %s should be ehex, int or str' % (type(other), other))

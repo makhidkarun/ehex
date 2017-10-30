@@ -116,20 +116,11 @@ class ehex(object):
     def __add__(self, other):
         if isinstance(other, str):
             ehex2 = ehex(other)
-            try:
-                return ehex(self._value + int(ehex2))
-            except ValueError:
-                raise
+            return ehex(self._value + int(ehex2))
         elif isinstance(other, int):
-            try:
-                return ehex(self._value + other)
-            except ValueError:
-                raise
+            return ehex(self._value + other)
         elif isinstance(other, ehex):
-            try:
-                return ehex(self._value + int(other))
-            except ValueError:
-                raise
+            return ehex(self._value + int(other))
         else:
             raise TypeError(
                 '%s %s should be ehex, int or str', type(other), other)
@@ -137,20 +128,11 @@ class ehex(object):
     def __sub__(self, other):
         if isinstance(other, str):
             ehex2 = ehex(other)
-            try:
-                return ehex(self._value - int(ehex2))
-            except ValueError:
-                raise
+            return ehex(self._value - int(ehex2))
         elif isinstance(other, int):
-            try:
-                return ehex(self._value - other)
-            except ValueError:
-                raise
+            return ehex(self._value - other)
         elif isinstance(other, ehex):
-            try:
-                return ehex(self._value - int(other))
-            except ValueError:
-                raise
+            return ehex(self._value - int(other))
         else:
             raise TypeError(
                 '%s %s should be ehex, int or str', type(other), other)
@@ -158,20 +140,9 @@ class ehex(object):
     def __rsub__(self, other):
         if isinstance(other, str):
             ehex2 = ehex(other)
-            try:
-                return ehex(int(ehex2) - self._value)
-            except ValueError:
-                raise
+            return ehex(int(ehex2) - self._value)
         elif isinstance(other, int):
-            try:
-                return ehex(other - self._value)
-            except ValueError:
-                raise
-        elif isinstance(other, ehex):
-            try:
-                return ehex(int(other) - self._value)
-            except ValueError:
-                raise
+            return ehex(other - self._value)
         else:
             raise TypeError(
                 '%s %s should be ehex, int or str', type(other), other)
